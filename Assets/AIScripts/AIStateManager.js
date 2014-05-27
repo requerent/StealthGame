@@ -58,7 +58,7 @@ function Update () {
 		
 		agent.speed = pursuitSpeed;
 		
-		if((transform.position - target.transform.position).magnitude < 3)
+		if((transform.position - target.transform.position).magnitude < 2)
 		{
 			Application.LoadLevel(0);
 		}
