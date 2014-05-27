@@ -39,6 +39,7 @@ function Update () {
 		
 		if((transform.position - target.transform.position).magnitude < 1)
 		{
+			Debug.Log("Patrol point 2");
 			target = patrolPointTwo;
 		}
 		
