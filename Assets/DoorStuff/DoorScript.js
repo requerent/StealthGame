@@ -3,10 +3,11 @@
 private var open : boolean = false;
 private var trigger : boolean = false;
 public var doorHeight : float;
+private var doorStartHeight: float;
 
 function Start () 
 {
-	
+	doorStartHeight = transform.position.y;
 }
 
 function Update () 
@@ -14,18 +15,26 @@ function Update ()
 	//transform.GetChildCount() == 0; // If Childcount is 1, don't open
 							  // If it's Zero, open.
 
-	
-	if(Input.GetKeyDown(KeyCode.Space) && !open && trigger && transform.GetChildCount() == 0)
+	if(transform.position.y < doorHeight && open)
+			transform.position.y += Time.deltaTime *5;
+
+	else if(transform.position.y > doorStartHeight && !open)
+			transform.position.y -= Time.deltaTime *5;
+			
+	if(Input.GetKeyDown(KeyCode.R) && !open && trigger && transform.GetChildCount() == 0)
 	{
 		open = true;
-		transform.position.y += doorHeight;
+		//if(transform.position.y < doorHeight)
+			//transform.position.y += Time.deltaTime *5;
+		Debug.Log("OpenDoor");
 		// Open the door
 		
 	}
-	else if(Input.GetKeyDown(KeyCode.Space) && open && trigger && transform.GetChildCount() == 0)
+	else if(Input.GetKeyDown(KeyCode.R) && open && trigger && transform.GetChildCount() == 0)
 	{
 		open = false;
-		transform.position.y -= doorHeight;
+		//if(transform.position.y > doorHeight)
+		//transform.position.y -= Time.deltaTime;
 		// Open the door
 	}	
 }
@@ -35,6 +44,7 @@ function OnTriggerEnter (other : Collider)
 	if(other.gameObject.CompareTag("Player"))
 	{
 		trigger = true;
+		Debug.Log("Trigger");
 	}
 }
 
