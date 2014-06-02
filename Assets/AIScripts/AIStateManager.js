@@ -63,9 +63,9 @@ function Update () {
 			Application.LoadLevel(0);
 		}
 		
-		if((transform.position - target.transform.position).magnitude > 7)
+		if((transform.position - target.transform.position).magnitude > 4)
 		{
-			currentState = EnemyStates.PATROL;
+			currentState = EnemyStates.INVESTIGATE;
 		}
 		
 		break;
