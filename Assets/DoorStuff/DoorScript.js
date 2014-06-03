@@ -4,10 +4,12 @@ private var open : boolean = false;
 private var trigger : boolean = false;
 public var doorHeight : float;
 private var doorStartHeight: float;
+private var doorOpenHeight : float;
 
 function Start () 
 {
 	doorStartHeight = transform.position.y;
+	doorOpenHeight = doorStartHeight + doorHeight;
 }
 
 function Update () 
@@ -15,7 +17,7 @@ function Update ()
 	//transform.GetChildCount() == 0; // If Childcount is 1, don't open
 							  // If it's Zero, open.
 
-	if(transform.position.y < doorHeight && open)
+	if(transform.position.y < doorOpenHeight && open)
 			transform.position.y += Time.deltaTime *5;
 
 	else if(transform.position.y > doorStartHeight && !open)
